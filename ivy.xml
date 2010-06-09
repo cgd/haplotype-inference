@@ -20,7 +20,7 @@
     <dependencies>
         <dependency
             org="org.jax"
-            name="jax-util"
+            name="java-util"
             rev="latest.integration"/>
         <dependency
             org="org.jax"
