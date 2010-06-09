@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://jax.org/haplotype-analysis-types"
+            xmlns:tns="http://jax.org/haplotype-analysis-types"
+            elementFormDefault="qualified">
+    <xsd:complexType name="haplotypeDataSourceType" abstract="true">
+        <xsd:attribute name="id" type="xsd:ID" use="required"/>
+        <xsd:attribute name="name" type="xsd:string"/>
+    </xsd:complexType>
+    <xsd:complexType name="genotypeInferenceHaplotypeDataSourceType">
+        <xsd:complexContent>
+            <xsd:extension xmlns:tns="http://jax.org/haplotype-analysis-types" base="tns:haplotypeDataSourceType">
+                <xsd:sequence>
+                    <xsd:element name="strainToAcceptFilter" maxOccurs="unbounded" minOccurs="0" type="tns:strainType"/>
+                </xsd:sequence>
+                <xsd:attribute name="genomeDataSourceId" type="xsd:IDREF" use="required"/>
+                <xsd:attribute name="minimumSnpExtent" type="xsd:unsignedInt" use="required"/>
+                <xsd:attribute name="minimumStrainGroupSize" type="xsd:unsignedInt" use="required"/>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="chromosomeDataSourceType" abstract="true">
+        <xsd:attribute name="chromosomeNumber" type="xsd:unsignedByte" use="required"/>
+    </xsd:complexType>
+    <xsd:complexType name="commaSeparatedChromosomeDataSourceType">
+        <xsd:complexContent>
+            <xsd:extension xmlns:tns="http://jax.org/haplotype-analysis-types" base="tns:chromosomeDataSourceType">
+                <xsd:attribute name="fileLocation" type="xsd:string" use="required"/>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="haplotypeAssociationTestType">
+        <xsd:attribute name="id" type="xsd:ID" use="required"/>
+        <xsd:attribute name="haplotypeDataSourceId" type="xsd:IDREF" use="required"/>
+        <xsd:attribute name="phenotypeDataSourceId" type="xsd:IDREF" use="required"/>
+        <xsd:attribute name="name" type="xsd:string"/>
+    </xsd:complexType>
+    <xsd:complexType name="phenotypeDataSourceType" abstract="true">
+        <xsd:attribute name="sexConstraint" type="tns:sexConstraintType" use="required"/>
+        <xsd:attribute name="id" type="xsd:ID" use="required"/>
+        <xsd:attribute name="name" type="xsd:string" use="required"/>
+    </xsd:complexType>
+    <xsd:complexType name="mpdIndividualPhenotypeDataSourceType">
+        <xsd:annotation>
+            <xsd:documentation>
+                mpdIndividualPhenotypeDataSourceType should be used for
+                phenotype files in the MPD "individual" format. See files from
+                www.jax.org/phenome for some examples of this
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension xmlns:tns="http://jax.org/haplotype-analysis-types" base="tns:phenotypeDataSourceType">
+                <xsd:attribute name="fileLocation" type="xsd:string" use="required"/>
+                <xsd:attribute name="phenotype" type="xsd:string" use="required"/>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="haplotypeEquivalenceClassType">
+        <xsd:sequence>
+            <xsd:element name="strain" type="tns:strainType" maxOccurs="unbounded"></xsd:element>
+            <xsd:element name="snpBlock" type="tns:snpBlockType" maxOccurs="unbounded"></xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="snpBlockType">
+        <xsd:attribute name="startPositionInBasePairs" type="xsd:string" use="required"/>
+        <xsd:attribute name="extentInBasePairs" type="xsd:string" use="required"/>
+    </xsd:complexType>
+    <xsd:complexType name="strainType">
+        <xsd:attribute name="strainName" type="xsd:string" use="required"/>
+    </xsd:complexType>
+    <xsd:complexType name="haplotypeAssociationTestOutputType" abstract="true">
+        <xsd:attribute name="haplotypeAssociationTestId" type="xsd:IDREF" use="required"/>
+    </xsd:complexType>
+    <xsd:complexType name="commaSeparatedHaplotypeAssociationTestOutputType">
+        <xsd:complexContent>
+            <xsd:extension base="tns:haplotypeAssociationTestOutputType">
+                <xsd:attribute name="fileLocation" type="xsd:string" use="required"/>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="genomeDataSourceType" abstract="true">
+        <xsd:attribute name="id" type="xsd:ID" use="required"/>
+        <xsd:attribute name="name" type="xsd:string" use="required"/>
+        <xsd:attribute name="ncbiBuildVersion" type="xsd:string" use="required"/>
+    </xsd:complexType>
+    <xsd:complexType name="phylogenyDataSourceType" abstract="true">
+        <xsd:attribute name="id" type="xsd:ID" use="required"/>
+        <xsd:attribute name="name" type="xsd:string"/>
+    </xsd:complexType>
+    <xsd:complexType name="genotypeInferencePhylogenyDataSourceType">
+        <xsd:complexContent>
+            <xsd:extension base="tns:phylogenyDataSourceType">
+                <xsd:sequence>
+                    <xsd:element name="strainToAcceptFilter" type="tns:strainType" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+                <xsd:attribute name="genomeDataSourceId" type="xsd:IDREF" use="required"/>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="phylogenyAssociationTestType">
+        <xsd:attribute name="id" type="xsd:ID" use="required"/>
+        <xsd:attribute name="phylogenyDataSourceId" type="xsd:IDREF" use="required"/>
+        <xsd:attribute name="phenotypeDataSourceId" type="xsd:IDREF" use="required"/>
+        <xsd:attribute name="name" type="xsd:string"/>
+    </xsd:complexType>
+    <xsd:complexType name="phylogenyAssociationTestOutputType" abstract="true">
+        <xsd:attribute name="phylogenyAssociationTestId" type="xsd:IDREF" use="required"/>
+    </xsd:complexType>
+    <xsd:complexType name="tabDelimitedPhylogenyAssociationTestOutputType">
+        <xsd:complexContent>
+            <xsd:extension base="tns:phylogenyAssociationTestOutputType">
+                <xsd:sequence/>
+                <xsd:attribute name="fileLocation" type="xsd:string" use="required"/>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="simpleGenomeDataSourceType">
+        <xsd:complexContent>
+            <xsd:extension base="tns:genomeDataSourceType">
+                <xsd:sequence>
+                    <xsd:element name="chromosomeDataSource" type="tns:chromosomeDataSourceType" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="binaryGenomeDataSourceType">
+        <xsd:complexContent>
+            <xsd:extension base="tns:genomeDataSourceType">
+                <xsd:attribute name="dataDirectory" type="xsd:string" use="required"/>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:simpleType name="sexConstraintType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="allowMale"/>
+            <xsd:enumeration value="allowFemale"/>
+            <xsd:enumeration value="sexAgnostic"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+</xsd:schema>

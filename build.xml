@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project
+    xmlns:ivy="antlib:org.apache.ivy.ant"
+    name="HAM Analysis"
+    default="dist"
+    basedir=".">
+    
+    <description>
+        the main build file for the HAM project
+    </description>
+    
+    <import file="build-properties.xml"/>
+    <import file="${common.build.dir}/build-common.xml"/>
+    
+    <target name="compile-nodeps" depends="ivy-retrieve,schema-to-java" description="compile the source">
+        <!-- Compile the java code from ${src} into ${build}/classes -->
+        <mkdir dir="${build}/classes"/>
+        <javac destdir="${build}/classes" target="1.5" source="1.5" deprecation="true" classpathref="proj.classpath" debug="true">
+            <!--
+            <compilerarg value="-Xlint"/>
+            <compilerarg value="-Xlint:-serial"/>
+            -->
+            <src path="${src}/java"/>
+            <src path="${build}/java"/>
+        </javac>
+    </target>
+    
+    <target name="jar" description="Jar the distribution.">
+        <!-- Create the lib directory -->
+        <mkdir dir="${dist}"/>
+        
+        <!-- Put everything in ${build}/classes into the jar file -->
+        <ivy:info file="ivy.xml"/>
+        <jar destfile="${dist}/${ivy.module}-${ivy.revision}.jar" manifest="${src}/META-INF/MANIFEST.MF">
+            <fileset dir="${build}/classes"/>
+            <fileset dir="${src}/resources"/>
+            <metainf dir="${src}/META-INF"/>
+        </jar>
+    </target>
+
+</project>

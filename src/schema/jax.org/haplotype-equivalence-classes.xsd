@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://jax.org/haplotype-equivalence-classes"
+            xmlns:tns="http://jax.org/haplotype-equivalence-classes"
+            elementFormDefault="qualified" xmlns:hap-anal="http://jax.org/haplotype-analysis-types">
+    <xsd:import schemaLocation="../jax.org/haplotype-analysis-types.xsd" namespace="http://jax.org/haplotype-analysis-types"/>
+    <xsd:element name="haplotypeEquivalenceClasses">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="haplotypeEquivalenceClass" type="hap-anal:haplotypeEquivalenceClassType" minOccurs="0" maxOccurs="unbounded"></xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>

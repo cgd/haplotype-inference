@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://jax.org/haplotype-experiment"
+            xmlns:tns="http://jax.org/haplotype-experiment"
+            elementFormDefault="qualified" xmlns:hap-anal="http://jax.org/haplotype-analysis-types">
+    <xsd:import schemaLocation="../jax.org/haplotype-analysis-types.xsd" namespace="http://jax.org/haplotype-analysis-types"/>
+    <xsd:element name="haplotypeAssociationExperimentDesign">
+        <xsd:complexType>
+            <xsd:sequence>
+                <!-- haplotype tests -->
+                <xsd:element name="haplotypeAssociationTest" type="hap-anal:haplotypeAssociationTestType" minOccurs="0" maxOccurs="unbounded"/>
+                <xsd:element name="haplotypeAssociationTestOutput" type="hap-anal:haplotypeAssociationTestOutputType" minOccurs="0" maxOccurs="unbounded"/>
+                <xsd:element name="haplotypeDataSource" type="hap-anal:haplotypeDataSourceType" minOccurs="0" maxOccurs="unbounded"/>
+                
+                <!-- phylogeny tests -->
+                <xsd:element name="phylogenyAssociationTest" type="hap-anal:phylogenyAssociationTestType" minOccurs="0" maxOccurs="unbounded"/>
+                <xsd:element name="phylogenyAssociationTestOutput" type="hap-anal:phylogenyAssociationTestOutputType" minOccurs="0" maxOccurs="unbounded"/>
+                <xsd:element name="phylogenyDataSource" type="hap-anal:phylogenyDataSourceType" minOccurs="0" maxOccurs="unbounded"/>
+                
+                <!-- raw data -->
+                <xsd:element name="genomeDataSource" type="hap-anal:genomeDataSourceType" minOccurs="0" maxOccurs="unbounded"/>
+                <xsd:element name="phenotypeDataSource" type="hap-anal:phenotypeDataSourceType" minOccurs="0" maxOccurs="unbounded"/>
+            </xsd:sequence>
+            <xsd:attribute name="experimentName" type="xsd:string"/>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>

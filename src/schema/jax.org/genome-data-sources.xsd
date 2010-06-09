@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://jax.org/genome-data-sources"
+            xmlns:tns="http://jax.org/genome-data-sources"
+            elementFormDefault="qualified"
+            xmlns:hap-anal="http://jax.org/haplotype-analysis-types">
+    <xsd:import schemaLocation="../jax.org/haplotype-analysis-types.xsd"
+                namespace="http://jax.org/haplotype-analysis-types"/>
+    <xsd:element name="genomeDataSources">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="genomeDataSource"
+                             type="hap-anal:genomeDataSourceType"
+                             maxOccurs="unbounded">
+                </xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>

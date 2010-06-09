@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<jxb:bindings
+    version="1.0"
+    xmlns:jxb="http://java.sun.com/xml/ns/jaxb">
+    
+    <jxb:bindings
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        schemaLocation="jax.org/haplotype-analysis-types.xsd"
+        node="/xs:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="org.jax.haplotype.jaxbgenerated"/>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    
+    <jxb:bindings
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        schemaLocation="jax.org/haplotype-experiment.xsd"
+        node="/xs:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="org.jax.haplotype.jaxbgenerated"/>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    
+    <jxb:bindings
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        schemaLocation="jax.org/haplotype-equivalence-classes.xsd"
+        node="/xs:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="org.jax.haplotype.jaxbgenerated"/>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    
+    <jxb:bindings
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        schemaLocation="jax.org/genome-data-sources.xsd"
+        node="/xs:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="org.jax.haplotype.jaxbgenerated"/>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    
+    <jxb:bindings
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        schemaLocation="jax.org/phenotype-data-sources.xsd"
+        node="/xs:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="org.jax.haplotype.jaxbgenerated"/>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    
+</jxb:bindings> 
