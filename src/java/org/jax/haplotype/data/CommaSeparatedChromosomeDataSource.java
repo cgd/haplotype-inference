@@ -102,7 +102,7 @@ public class CommaSeparatedChromosomeDataSource implements ChromosomeDataSource
     {
         try
         {
-            this.csvGenotypeUrl = csvGenotypeFile.toURL();
+            this.csvGenotypeUrl = csvGenotypeFile.toURI().toURL();
             this.chromosomeNumber = chromosomeNumber;
             this.cacheData = cacheData;
             this.cachedGenotypeData = null;

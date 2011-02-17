@@ -224,6 +224,7 @@ public class CachingPhylogenyDataManager
                 
                 try
                 {
+                    @SuppressWarnings("unchecked")
                     List<BasePairInterval> maxKIntervals =
                         (List<BasePairInterval>)objectInputStream.readObject();
                     objectInputStream.close();
